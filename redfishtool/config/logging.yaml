@@ -1,0 +1,44 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  simple:
+    format: "[%(asctime)s] %(levelname)-8s: %(message)s"
+    datefmt: "%Y%m%d %H:%M:%S"
+  debug:
+    format: "[%(asctime)s] %(levelname)-8s:(%(funcName)s) %(message)s"
+    datefmt: "%Y%m%d %H:%M:%S"
+
+root:
+  level: INFO
+  handlers: [console]
+
+# loggers:
+#   mod:
+#     level: INFO
+#     handlers: [console, info_file_handler]
+#     propagate: no
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: debug
+    stream: ext://sys.stdout
+
+  # file:
+  #   class: logging.handlers.RotatingFileHandler
+  #   level: DEBUG
+  #   formatter: debug
+  #   filename: /var/log/cli-app.log
+  #   maxBytes: 5242880
+  #   backupCount: 1
+
+  # file:
+  #   class: cli_app.utils.log.SetLogDirRotatingFileHandler
+  #   level: DEBUG
+  #   formatter: debug
+  #   filename: app.log
+  #   maxBytes: 20971520
+  #   backupCount: 5
+  #   logBaseDir: /var/log/cli-app
